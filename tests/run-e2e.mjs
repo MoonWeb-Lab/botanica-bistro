@@ -55,6 +55,8 @@ export async function runTestSuite(targetUrl) {
 
   // Menu Category & Tag Filtering
   console.log('\n  Testing Menu Filtering...');
+  await page.locator('#menu').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(600);
   await page.click('button:has-text("Паста & Ризотто")');
   await page.waitForTimeout(300);
   const pastaCount = await page.locator('#menu h3').count();
@@ -66,8 +68,8 @@ export async function runTestSuite(targetUrl) {
   assert(veganCount >= 1, `Tag filter "Вегетарианское" filtered correctly (Count: ${veganCount})`);
 
   await page.click('button:has-text("Все меню")');
-  await page.click('button:has-text("Вегетарианское")'); // toggle off
-  await page.waitForTimeout(300);
+  await page.locator('button:has-text("Вегетарианское")').click(); // toggle off
+  await page.waitForTimeout(1000);
 
   // Check all images in menu
   const menuImages = await page.locator('#menu img').evaluateAll((imgs) =>

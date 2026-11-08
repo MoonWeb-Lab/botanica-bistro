@@ -149,22 +149,22 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity"
+        className="fixed inset-0 bg-bistro-dark/60 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-2xl bg-bistro-surface border border-bistro-honey/40 rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[92vh]">
+      <div className="relative w-full max-w-2xl bg-white border border-bistro-border rounded-3xl shadow-soft-lift overflow-hidden z-10 flex flex-col max-h-[92vh]">
         {/* Header */}
-        <div className="p-5 sm:p-6 border-b border-bistro-border flex items-center justify-between bg-bistro-card">
+        <div className="p-5 sm:p-6 border-b border-bistro-border flex items-center justify-between bg-bistro-cream/40">
           <div>
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-bistro-honey" />
-              <span className="text-[10px] uppercase tracking-widest text-bistro-honey font-bold">
+              <span className="w-2 h-2 rounded-full bg-bistro-terracotta" />
+              <span className="text-[10px] uppercase tracking-widest text-bistro-terracotta font-bold">
                 {step === 5 ? 'Резерв оформлен' : `Шаг ${step} из 4 • Бронирование стола`}
               </span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white font-serif uppercase tracking-tight mt-0.5">
+            <h3 className="text-xl sm:text-2xl font-bold text-bistro-dark font-serif uppercase tracking-tight mt-0.5">
               {step === 1 && 'Выберите зону ресторана'}
               {step === 2 && 'Персоны и повод визита'}
               {step === 3 && 'Дата и время посадки'}
@@ -174,7 +174,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full bg-bistro-elevated text-bistro-muted hover:text-white transition-colors"
+            className="p-2 rounded-full bg-bistro-cream text-bistro-muted hover:text-bistro-dark hover:bg-bistro-border/60 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -182,9 +182,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
         {/* Progress Bar */}
         {step < 5 && (
-          <div className="h-1 bg-bistro-elevated w-full">
+          <div className="h-1 bg-bistro-cream w-full">
             <div
-              className="h-full bg-gradient-to-r from-bistro-honey to-bistro-honey-light transition-all duration-300"
+              className="h-full bg-bistro-terracotta transition-all duration-300"
               style={{ width: `${(step / 4) * 100}%` }}
             />
           </div>
@@ -203,8 +203,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     onClick={() => setBooking((prev) => ({ ...prev, zoneId: zone.id }))}
                     className={`rounded-2xl border transition-all cursor-pointer overflow-hidden p-4 flex flex-col justify-between ${
                       isSelected
-                        ? 'border-bistro-honey bg-bistro-elevated ring-1 ring-bistro-honey shadow-honey-glow'
-                        : 'border-white/5 bg-bistro-card hover:border-white/20'
+                        ? 'border-bistro-terracotta bg-bistro-terracotta/5 ring-1 ring-bistro-terracotta shadow-sm'
+                        : 'border-bistro-border bg-bistro-cream/20 hover:border-bistro-border-strong hover:bg-white'
                     }`}
                   >
                     <div>
@@ -212,16 +212,16 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                         <img
                           src={zone.image}
                           alt={zone.name}
-                          className="w-full h-full object-cover brightness-90"
+                          className="w-full h-full object-cover"
                         />
                         {isSelected && (
-                          <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-bistro-honey text-black flex items-center justify-center shadow-md">
+                          <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-bistro-terracotta text-white flex items-center justify-center shadow-md">
                             <CheckCircle2 className="w-4 h-4" />
                           </div>
                         )}
                       </div>
-                      <h4 className="font-serif text-base font-bold text-white">{zone.name}</h4>
-                      <p className="text-[11px] text-bistro-honey font-semibold mt-0.5">{zone.tagline}</p>
+                      <h4 className="font-serif text-base font-bold text-bistro-dark">{zone.name}</h4>
+                      <p className="text-[11px] text-bistro-terracotta font-semibold mt-0.5">{zone.tagline}</p>
                       <p className="text-xs text-bistro-muted mt-1.5 line-clamp-2">{zone.description}</p>
                     </div>
                   </div>
@@ -247,12 +247,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                         onClick={() => setBooking((prev) => ({ ...prev, guestsCount: num }))}
                         className={`py-3 rounded-xl border flex flex-col items-center justify-center transition-all ${
                           isSelected
-                            ? 'border-bistro-honey bg-bistro-honey text-black font-bold shadow-honey-glow'
-                            : 'border-white/5 bg-bistro-card text-bistro-linen hover:border-white/20'
+                            ? 'border-bistro-terracotta bg-bistro-terracotta text-white font-bold shadow-sm'
+                            : 'border-bistro-border bg-bistro-cream/30 text-bistro-text hover:border-bistro-border-strong hover:bg-white'
                         }`}
                       >
                         <span className="font-serif text-lg font-bold">{num}</span>
-                        <span className={`text-[9px] uppercase ${isSelected ? 'text-black' : 'text-bistro-muted'}`}>
+                        <span className={`text-[9px] uppercase ${isSelected ? 'text-white/90' : 'text-bistro-muted'}`}>
                           {num === 1 ? 'гость' : num < 5 ? 'гостя' : 'гостей'}
                         </span>
                       </button>
@@ -275,12 +275,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                         onClick={() => setBooking((prev) => ({ ...prev, occasion: occ }))}
                         className={`p-3 rounded-xl border text-left text-xs font-medium transition-all flex items-center justify-between ${
                           isSelected
-                            ? 'border-bistro-honey bg-bistro-elevated text-bistro-honey font-bold shadow-sm'
-                            : 'border-white/5 bg-bistro-card text-bistro-linen hover:border-white/20'
+                            ? 'border-bistro-terracotta bg-bistro-terracotta/10 text-bistro-terracotta font-bold'
+                            : 'border-bistro-border bg-bistro-cream/30 text-bistro-text hover:border-bistro-border-strong hover:bg-white'
                         }`}
                       >
                         <span>{occ}</span>
-                        {isSelected && <CheckCircle2 className="w-4 h-4 text-bistro-honey shrink-0 ml-2" />}
+                        {isSelected && <CheckCircle2 className="w-4 h-4 text-bistro-terracotta shrink-0 ml-2" />}
                       </button>
                     );
                   })}
@@ -306,15 +306,15 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                         onClick={() => setBooking((prev) => ({ ...prev, date: item.dateStr }))}
                         className={`p-3 rounded-xl border flex flex-col items-center justify-center transition-all ${
                           isSelected
-                            ? 'border-bistro-honey bg-bistro-honey text-black font-bold shadow-honey-glow'
-                            : 'border-white/5 bg-bistro-card text-bistro-linen hover:border-white/20'
+                            ? 'border-bistro-terracotta bg-bistro-terracotta text-white font-bold shadow-sm'
+                            : 'border-bistro-border bg-bistro-cream/30 text-bistro-text hover:border-bistro-border-strong hover:bg-white'
                         }`}
                       >
-                        <span className={`text-[10px] uppercase ${isSelected ? 'text-black' : 'text-bistro-muted'}`}>
+                        <span className={`text-[10px] uppercase ${isSelected ? 'text-white/90' : 'text-bistro-muted'}`}>
                           {item.dayName}
                         </span>
                         <span className="font-serif text-lg font-bold my-0.5">{item.dayNum}</span>
-                        <span className={`text-[10px] ${isSelected ? 'text-black/80' : 'text-bistro-muted'}`}>
+                        <span className={`text-[10px] ${isSelected ? 'text-white/80' : 'text-bistro-muted'}`}>
                           {item.monthName}
                         </span>
                       </button>
@@ -337,8 +337,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                         onClick={() => setBooking((prev) => ({ ...prev, time: slot }))}
                         className={`py-2.5 rounded-xl border text-xs font-semibold transition-all ${
                           isSelected
-                            ? 'border-bistro-honey bg-bistro-honey text-black font-bold shadow-honey-glow'
-                            : 'border-white/5 bg-bistro-card text-bistro-linen hover:border-white/20'
+                            ? 'border-bistro-terracotta bg-bistro-terracotta text-white font-bold shadow-sm'
+                            : 'border-bistro-border bg-bistro-cream/30 text-bistro-text hover:border-bistro-border-strong hover:bg-white'
                         }`}
                       >
                         {slot}
@@ -354,18 +354,18 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           {step === 4 && (
             <div className="space-y-6">
               {/* Summary Card */}
-              <div className="p-4 rounded-2xl bg-bistro-card border border-bistro-honey/30 space-y-2 text-xs">
+              <div className="p-4 rounded-2xl bg-bistro-cream/50 border border-bistro-border space-y-2 text-xs">
                 <div className="flex justify-between">
                   <span className="text-bistro-muted">Зона:</span>
-                  <span className="font-serif font-bold text-white">{currentZone.name}</span>
+                  <span className="font-serif font-bold text-bistro-dark">{currentZone.name}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-bistro-muted">Гостей:</span>
-                  <span className="font-bold text-white">{booking.guestsCount} чел. ({booking.occasion})</span>
+                  <span className="font-bold text-bistro-dark">{booking.guestsCount} чел. ({booking.occasion})</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-bistro-muted">Дата и время:</span>
-                  <span className="font-bold text-bistro-honey">
+                  <span className="font-bold text-bistro-terracotta">
                     {booking.date} в {booking.time}
                   </span>
                 </div>
@@ -384,10 +384,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                       placeholder="Константин"
                       value={booking.customerName}
                       onChange={(e) => setBooking((prev) => ({ ...prev, customerName: e.target.value }))}
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-bistro-card border border-white/10 text-white placeholder-bistro-muted focus:outline-none focus:border-bistro-honey text-sm"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-bistro-border text-bistro-dark placeholder-bistro-muted/60 focus:outline-none focus:border-bistro-terracotta text-sm"
                     />
                   </div>
-                  {nameError && <p className="text-red-400 text-xs mt-1">{nameError}</p>}
+                  {nameError && <p className="text-red-500 text-xs mt-1">{nameError}</p>}
                 </div>
 
                 <div>
@@ -401,10 +401,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                       placeholder="+7 (999) 000-00-00"
                       value={booking.customerPhone}
                       onChange={(e) => setBooking((prev) => ({ ...prev, customerPhone: e.target.value }))}
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-bistro-card border border-white/10 text-white placeholder-bistro-muted focus:outline-none focus:border-bistro-honey text-sm"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-bistro-border text-bistro-dark placeholder-bistro-muted/60 focus:outline-none focus:border-bistro-terracotta text-sm"
                     />
                   </div>
-                  {phoneError && <p className="text-red-400 text-xs mt-1">{phoneError}</p>}
+                  {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
                 </div>
 
                 <div>
@@ -416,7 +416,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     placeholder="Например: столик ближе к пальмам, нужен стульчик для ребенка"
                     value={booking.wishes}
                     onChange={(e) => setBooking((prev) => ({ ...prev, wishes: e.target.value }))}
-                    className="w-full px-4 py-2.5 rounded-xl bg-bistro-card border border-white/10 text-white placeholder-bistro-muted focus:outline-none focus:border-bistro-honey text-sm"
+                    className="w-full px-4 py-2.5 rounded-xl bg-white border border-bistro-border text-bistro-dark placeholder-bistro-muted/60 focus:outline-none focus:border-bistro-terracotta text-sm"
                   />
                 </div>
               </div>
@@ -426,46 +426,46 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           {/* STEP 5: Success Confirmation Screen */}
           {step === 5 && (
             <div className="py-6 text-center flex flex-col items-center">
-              <div className="w-16 h-16 rounded-full bg-bistro-honey/20 border border-bistro-honey text-bistro-honey flex items-center justify-center mb-6 shadow-honey-glow animate-bounce">
+              <div className="w-16 h-16 rounded-full bg-bistro-olive/10 border border-bistro-olive/30 text-bistro-olive flex items-center justify-center mb-6">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
 
-              <h4 className="text-2xl font-serif font-bold text-white uppercase mb-2">
+              <h4 className="text-2xl font-serif font-bold text-bistro-dark uppercase mb-2">
                 Стол забронирован!
               </h4>
               <p className="text-bistro-muted text-sm max-w-md mb-6 font-light">
-                Номер бронирования: <strong className="text-bistro-honey">#BB-{Math.floor(1000 + Math.random() * 9000)}</strong>.
-                Мы отправили электронное подтверждение на телефон <span className="text-white font-medium">{booking.customerPhone}</span>.
+                Номер бронирования: <strong className="text-bistro-terracotta">#BB-{Math.floor(1000 + Math.random() * 9000)}</strong>.
+                Мы отправили электронное подтверждение на телефон <span className="text-bistro-dark font-medium">{booking.customerPhone}</span>.
               </p>
 
-              <div className="w-full max-w-md p-5 rounded-2xl bg-bistro-card border border-white/10 text-left text-xs space-y-2.5 mb-6">
+              <div className="w-full max-w-md p-5 rounded-2xl bg-bistro-cream/50 border border-bistro-border text-left text-xs space-y-2.5 mb-6">
                 <div className="flex justify-between">
                   <span className="text-bistro-muted">Гость:</span>
-                  <span className="text-white font-serif font-bold text-sm">{booking.customerName}</span>
+                  <span className="text-bistro-dark font-serif font-bold text-sm">{booking.customerName}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-bistro-muted">Зона посадки:</span>
-                  <span className="text-white font-medium">{currentZone.name}</span>
+                  <span className="text-bistro-dark font-medium">{currentZone.name}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-bistro-muted">Персон:</span>
-                  <span className="text-white font-medium">{booking.guestsCount} ({booking.occasion})</span>
+                  <span className="text-bistro-dark font-medium">{booking.guestsCount} ({booking.occasion})</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-bistro-muted">Дата и время:</span>
-                  <span className="text-bistro-honey font-bold">
+                  <span className="text-bistro-terracotta font-bold">
                     {booking.date} в {booking.time}
                   </span>
                 </div>
-                <div className="flex justify-between pt-2 border-t border-white/5">
+                <div className="flex justify-between pt-2 border-t border-bistro-border">
                   <span className="text-bistro-muted">Адрес:</span>
-                  <span className="text-white">ул. Большая Никитская, 22/2</span>
+                  <span className="text-bistro-dark">ул. Большая Никитская, 22/2</span>
                 </div>
               </div>
 
               <button
                 onClick={resetAndClose}
-                className="px-8 py-3 rounded-full bg-bistro-honey text-black text-xs font-bold uppercase tracking-wider hover:bg-bistro-honey-light transition-colors"
+                className="px-8 py-3 rounded-full bg-bistro-terracotta text-white text-xs font-bold uppercase tracking-wider hover:bg-bistro-terracotta-hover transition-colors shadow-sm"
               >
                 Отлично, закрыть
               </button>
@@ -475,11 +475,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
         {/* Footer Actions */}
         {step < 5 && (
-          <div className="p-4 sm:p-5 border-t border-bistro-border bg-bistro-card flex items-center justify-between">
+          <div className="p-4 sm:p-5 border-t border-bistro-border bg-bistro-cream/40 flex items-center justify-between">
             {step > 1 ? (
               <button
                 onClick={handlePrevStep}
-                className="px-4 py-2.5 rounded-full bg-bistro-elevated text-bistro-linen hover:text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
+                className="px-4 py-2.5 rounded-full bg-white border border-bistro-border text-bistro-text hover:bg-bistro-cream text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
               >
                 <ChevronLeft className="w-4 h-4" />
                 <span>Назад</span>
@@ -490,7 +490,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
             <button
               onClick={handleNextStep}
-              className="px-6 py-2.5 rounded-full bg-bistro-honey text-black text-xs font-bold uppercase tracking-wider hover:bg-bistro-honey-light transition-all shadow-honey-glow flex items-center gap-2"
+              className="px-6 py-2.5 rounded-full bg-bistro-terracotta text-white text-xs font-bold uppercase tracking-wider hover:bg-bistro-terracotta-hover transition-all shadow-sm flex items-center gap-2"
             >
               <span>{step === 4 ? 'Подтвердить бронь' : 'Продолжить'}</span>
               <ChevronRight className="w-4 h-4" />

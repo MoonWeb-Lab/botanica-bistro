@@ -13,11 +13,11 @@ export const WineSection: React.FC = () => {
     <section id="wine" className="py-24 bg-bistro-bg relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bistro-elevated border border-bistro-honey/30 text-bistro-honey text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-bistro-border text-bistro-olive text-xs font-semibold uppercase tracking-wider mb-3 shadow-paper-card">
             <Wine className="w-3.5 h-3.5" />
             <span>Коллекция Энотеки</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white uppercase tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-bistro-dark uppercase tracking-tight mb-4">
             Винная коллекция
           </h2>
           <p className="text-bistro-muted text-sm sm:text-base leading-relaxed font-light">
@@ -38,8 +38,8 @@ export const WineSection: React.FC = () => {
               onClick={() => setActiveType(tab.id as any)}
               className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all whitespace-nowrap ${
                 activeType === tab.id
-                  ? 'bg-bistro-honey text-black font-bold shadow-honey-glow'
-                  : 'bg-bistro-card text-bistro-linen hover:text-white border border-white/5 hover:border-bistro-honey/30'
+                  ? 'bg-bistro-dark text-white font-bold shadow-md'
+                  : 'bg-white text-bistro-text hover:text-bistro-terracotta border border-bistro-border hover:border-bistro-terracotta/40 shadow-sm'
               }`}
             >
               {tab.label}
@@ -52,30 +52,30 @@ export const WineSection: React.FC = () => {
           {filteredWines.map((wine) => (
             <div
               key={wine.id}
-              className="rounded-2xl bg-bistro-card border border-white/5 p-6 sm:p-7 flex flex-col justify-between hover:border-bistro-honey/40 transition-all shadow-bistro-card group"
+              className="rounded-3xl bg-white border border-bistro-border/80 p-6 sm:p-7 flex flex-col justify-between hover:border-bistro-terracotta/50 transition-all shadow-paper-card hover:shadow-soft-lift group"
             >
               <div>
                 <div className="flex items-start justify-between gap-4 mb-2">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-bistro-honey">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-bistro-terracotta">
                         {wine.region}
                       </span>
                       <span className="text-[11px] text-bistro-muted">• {wine.vintage}</span>
                     </div>
-                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-white group-hover:text-bistro-honey transition-colors mt-0.5">
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-bistro-dark group-hover:text-bistro-terracotta transition-colors mt-0.5">
                       {wine.name}
                     </h3>
                   </div>
 
                   {/* Rating */}
-                  <div className="px-2.5 py-1 rounded bg-bistro-surface border border-bistro-honey/30 flex items-center gap-1 text-xs font-bold text-bistro-honey shrink-0">
-                    <Star className="w-3.5 h-3.5 fill-bistro-honey" />
+                  <div className="px-2.5 py-1 rounded-full bg-bistro-cream border border-bistro-sand flex items-center gap-1 text-xs font-bold text-bistro-dark shrink-0">
+                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
                     <span>{wine.rating}</span>
                   </div>
                 </div>
 
-                <p className="text-xs text-bistro-sage font-medium mb-3">
+                <p className="text-xs text-bistro-olive font-semibold mb-3">
                   Сортовой состав: {wine.grape}
                 </p>
 
@@ -84,18 +84,18 @@ export const WineSection: React.FC = () => {
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+              <div className="pt-4 border-t border-bistro-border/40 flex items-center justify-between">
                 <div className="flex items-baseline gap-4">
                   <div>
                     <span className="text-[10px] uppercase text-bistro-muted block">Бутылка 750 мл</span>
-                    <span className="font-serif text-xl font-bold text-white">
+                    <span className="font-serif text-xl font-bold text-bistro-dark">
                       {wine.priceBottle.toLocaleString('ru-RU')} ₽
                     </span>
                   </div>
                   {wine.priceGlass && (
-                    <div className="pl-4 border-l border-white/10">
+                    <div className="pl-4 border-l border-bistro-border/50">
                       <span className="text-[10px] uppercase text-bistro-muted block">Бокал 150 мл</span>
-                      <span className="font-serif text-lg font-bold text-bistro-honey">
+                      <span className="font-serif text-lg font-bold text-bistro-terracotta">
                         {wine.priceGlass.toLocaleString('ru-RU')} ₽
                       </span>
                     </div>
@@ -103,7 +103,7 @@ export const WineSection: React.FC = () => {
                 </div>
 
                 <span className="text-[11px] text-bistro-muted flex items-center gap-1 font-medium">
-                  <Compass className="w-3.5 h-3.5 text-bistro-honey" /> Температура: 10–12°C
+                  <Compass className="w-3.5 h-3.5 text-bistro-olive" /> Температура: 10–12°C
                 </span>
               </div>
             </div>

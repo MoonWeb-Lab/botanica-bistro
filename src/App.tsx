@@ -49,7 +49,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-bistro-bg text-bistro-cream flex flex-col font-sans selection:bg-bistro-honey selection:text-black">
+    <div className="min-h-screen bg-bistro-bg text-bistro-text flex flex-col font-sans selection:bg-bistro-terracotta selection:text-white">
       {/* Navigation Header */}
       <Header onOpenBooking={handleOpenBooking} />
 
@@ -91,9 +91,9 @@ export const App: React.FC = () => {
       >
         <button
           onClick={handleOpenBooking}
-          className="px-5 py-3 rounded-full bg-bistro-honey text-black font-bold uppercase tracking-wider text-xs shadow-honey-glow flex items-center gap-2 border border-black/20 active:scale-95 transition-transform"
+          className="px-5 py-3 rounded-full bg-bistro-terracotta text-white font-bold uppercase tracking-wider text-xs shadow-soft-lift flex items-center gap-2 border border-bistro-terracotta/20 active:scale-95 transition-transform"
         >
-          <Calendar className="w-4 h-4 text-black" />
+          <Calendar className="w-4 h-4 text-white" />
           <span>Бронь стола</span>
         </button>
       </div>
