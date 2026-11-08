@@ -46,12 +46,22 @@ export interface WineItem {
   rating: number;
 }
 
-export interface Review {
-  id: string;
-  author: string;
-  rating: number;
+export interface CartItem {
+  dish: Dish;
+  quantity: number;
+}
+
+export interface DeliveryOrderState {
+  items: CartItem[];
+  customerName: string;
+  customerPhone: string;
+  street: string;
+  house: string;
+  apartment: string;
+  entrance?: string;
+  floor?: string;
   comment: string;
-  source: string;
-  date: string;
-  favoriteDish: string;
+  paymentMethod: 'card_online' | 'card_courier' | 'cash';
+  deliveryTime: 'asap' | 'scheduled';
+  scheduledTime?: string;
 }

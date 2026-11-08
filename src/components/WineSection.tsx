@@ -87,17 +87,23 @@ export const WineSection: React.FC = () => {
               <div className="pt-4 border-t border-bistro-border/40 flex items-center justify-between">
                 <div className="flex items-baseline gap-4">
                   <div>
-                    <span className="text-[10px] uppercase text-bistro-muted block">Бутылка 750 мл</span>
-                    <span className="font-serif text-xl font-bold text-bistro-dark">
-                      {wine.priceBottle} BYN
-                    </span>
+                    <span className="text-[10px] uppercase tracking-wider text-bistro-muted block font-semibold">Бутылка 750 мл</span>
+                    <div className="flex items-baseline gap-1 mt-0.5">
+                      <span className="font-sans text-2xl font-black text-bistro-dark tracking-tight tabular-nums">
+                        {wine.priceBottle}
+                      </span>
+                      <span className="text-xs font-bold text-bistro-terracotta uppercase">BYN</span>
+                    </div>
                   </div>
                   {wine.priceGlass && (
-                    <div className="pl-4 border-l border-bistro-border/50">
-                      <span className="text-[10px] uppercase text-bistro-muted block">Бокал 150 мл</span>
-                      <span className="font-serif text-lg font-bold text-bistro-terracotta">
-                        {wine.priceGlass} BYN
-                      </span>
+                    <div className="pl-4 border-l border-bistro-border/60">
+                      <span className="text-[10px] uppercase tracking-wider text-bistro-muted block font-semibold">Бокал 150 мл</span>
+                      <div className="flex items-baseline gap-1 mt-0.5">
+                        <span className="font-sans text-xl font-extrabold text-bistro-terracotta tracking-tight tabular-nums">
+                          {wine.priceGlass}
+                        </span>
+                        <span className="text-xs font-bold text-bistro-terracotta uppercase">BYN</span>
+                      </div>
                     </div>
                   )}
                 </div>

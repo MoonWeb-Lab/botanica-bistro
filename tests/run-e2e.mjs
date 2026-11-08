@@ -55,7 +55,7 @@ export async function runTestSuite(targetUrl) {
   const heroHeading = await page.locator('h1').first().textContent();
   assert(heroHeading.includes('Гармония вкусов'), `Hero H1 rendered properly: "${heroHeading.replace(/\s+/g, ' ').trim()}"`);
 
-  // Menu Category & Tag Filtering
+  // Menu Category & Tag Filtering & Prices
   console.log('\n  Testing Menu Filtering & BYN Currency...');
   await page.locator('#menu').scrollIntoViewIfNeeded();
   await page.waitForTimeout(600);
@@ -73,15 +73,59 @@ export async function runTestSuite(targetUrl) {
   await page.locator('button:has-text("Вегетарианское")').click(); // toggle off
   await page.waitForTimeout(800);
 
-  // Check currency is BYN
+  // Check currency is BYN with bold readable font
   const hasBynPrice = await page.locator('span:has-text("BYN")').count();
-  assert(hasBynPrice > 0, `Prices formatted in Belarusian BYN (Found ${hasBynPrice} price tags)`);
+  assert(hasBynPrice > 0, `Prices formatted in Belarusian BYN with clear font (Found ${hasBynPrice} price tags)`);
 
   // Check all images in menu
   const menuImages = await page.locator('#menu img').evaluateAll((imgs) =>
     imgs.every((img) => img.complete && img.naturalWidth > 0)
   );
   assert(menuImages, 'All menu food photos loaded with natural dimensions > 0 (Zero broken images)');
+
+  // 1.5 FOOD DELIVERY & CART FLOW
+  console.log('\n  Testing Food Delivery & Cart Checkout Flow...');
+  const addBtn = page.locator('#menu button:has-text("В заказ")').first();
+  await addBtn.scrollIntoViewIfNeeded();
+  await addBtn.click();
+  await page.waitForTimeout(300);
+
+  const cartHeaderBtn = page.locator('header button:has-text("BYN")');
+  assert(await cartHeaderBtn.isVisible(), 'Header cart updated with item and sum in BYN');
+
+  await cartHeaderBtn.click();
+  await page.waitForTimeout(400);
+
+  const deliveryHeading = page.locator('div.fixed h3:has-text("Гастрономическая доставка")');
+  assert(await deliveryHeading.isVisible(), 'Delivery modal opened with added items');
+
+  // Proceed to Step 2
+  await page.click('button:has-text("Оформить заказ")');
+  await page.waitForTimeout(300);
+
+  // Validate phone & address in delivery
+  await page.click('button:has-text("Подтвердить доставку")');
+  await page.waitForTimeout(200);
+  const deliveryNameError = await page.locator('text=Укажите имя получателя').isVisible();
+  assert(deliveryNameError, 'Delivery validation caught empty recipient name properly');
+
+  await page.fill('input[placeholder="Алексей"]', 'Максим');
+  await page.fill('div.fixed input[placeholder="+375 (29) 000-00-00"]', '291112233');
+  await page.fill('input[placeholder*="пр. Победителей"]', 'пр. Победителей');
+  await page.fill('input[placeholder*="Дом"]', '12');
+  await page.fill('input[placeholder*="Квартира"]', '45');
+
+  await page.click('button:has-text("Подтвердить доставку")');
+  await page.waitForTimeout(500);
+
+  const delSuccess = await page.locator('text=Заказ передан на кухню!').isVisible();
+  assert(delSuccess, 'Delivery order successfully placed and confirmed');
+
+  const delCode = await page.locator('strong:has-text("#BB-DEL-")').textContent();
+  assert(delCode && delCode.startsWith('#BB-DEL-'), `Generated delivery code: "${delCode}"`);
+
+  await page.click('button:has-text("Отлично, закрыть")');
+  await page.waitForTimeout(300);
 
   // Seating Zones Pre-selection
   console.log('\n  Testing Seating Zones & Direct Table Booking Trigger...');
@@ -116,7 +160,7 @@ export async function runTestSuite(targetUrl) {
   assert(nameError, 'Form validation caught empty guest name properly');
 
   await page.fill('input[placeholder="Константин"]', 'Екатерина (MoonWeb VIP)');
-  await page.fill('input[placeholder="+375 (29) 000-00-00"]', '+375 29 555-44-33');
+  await page.fill('div.fixed input[placeholder="+375 (29) 000-00-00"]', '295554433');
   await page.fill('textarea', 'Юбилей в Верхнем городе, столик украсить свечами');
 
   await page.click('button:has-text("Подтвердить бронь")');

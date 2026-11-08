@@ -47,6 +47,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
                 <a href="#menu" className="hover:text-bistro-terracotta text-bistro-text/80 transition-colors">Авторское меню</a>
               </li>
               <li>
+                <a href="#delivery" className="hover:text-bistro-terracotta text-bistro-text/80 transition-colors">Доставка по Минску</a>
+              </li>
+              <li>
                 <a href="#zones" className="hover:text-bistro-terracotta text-bistro-text/80 transition-colors">Залы и посадка</a>
               </li>
               <li>

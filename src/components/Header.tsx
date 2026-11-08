@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Utensils, Menu, X, Phone, Calendar, Clock } from 'lucide-react';
+import { Utensils, Menu, X, Phone, Calendar, Clock, ShoppingBag } from 'lucide-react';
 
 interface HeaderProps {
   onOpenBooking: () => void;
+  onOpenDelivery: () => void;
+  cartCount: number;
+  cartTotal: number;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
+export const Header: React.FC<HeaderProps> = ({
+  onOpenBooking,
+  onOpenDelivery,
+  cartCount,
+  cartTotal,
+}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -19,6 +27,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
 
   const navLinks = [
     { name: 'Меню кухни', href: '#menu' },
+    { name: 'Доставка', href: '#delivery' },
     { name: 'Залы ресторана', href: '#zones' },
     { name: 'О шефе & Концепция', href: '#chef' },
     { name: 'Винная карта', href: '#wine' },
@@ -50,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-7">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -63,10 +72,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
         </nav>
 
         {/* Action Controls */}
-        <div className="hidden sm:flex items-center gap-5">
+        <div className="hidden sm:flex items-center gap-3.5">
+          {/* Phone */}
           <a
             href="tel:+375297203388"
-            className="flex items-center gap-2 text-xs font-semibold text-bistro-muted hover:text-bistro-dark transition-colors"
+            className="flex items-center gap-2 text-xs font-semibold text-bistro-muted hover:text-bistro-dark transition-colors mr-1"
           >
             <div className="w-7 h-7 rounded-full bg-bistro-cream border border-bistro-sand flex items-center justify-center text-bistro-terracotta">
               <Phone className="w-3.5 h-3.5" />
@@ -74,26 +84,60 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             <span>+375 (29) 720-33-88</span>
           </a>
 
+          {/* Delivery Cart Button */}
+          <button
+            onClick={onOpenDelivery}
+            className="relative px-3.5 py-2.5 rounded-full bg-white hover:bg-bistro-cream border border-bistro-border text-bistro-dark hover:border-bistro-terracotta transition-all flex items-center gap-2 shadow-xs"
+            title="Корзина доставки"
+          >
+            <ShoppingBag className="w-4 h-4 text-bistro-terracotta" />
+            {cartCount > 0 ? (
+              <span className="flex items-center gap-1.5">
+                <span className="w-4 h-4 rounded-full bg-bistro-terracotta text-white flex items-center justify-center text-[10px] font-bold">
+                  {cartCount}
+                </span>
+                <span className="font-sans font-bold text-xs text-bistro-dark">{cartTotal} BYN</span>
+              </span>
+            ) : (
+              <span className="text-xs font-semibold">Доставка</span>
+            )}
+          </button>
+
+          {/* Reservation Button */}
           <button
             onClick={onOpenBooking}
-            className="relative group overflow-hidden rounded-full bg-bistro-dark px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-bistro-terracotta hover:shadow-terracotta-glow active:scale-95 flex items-center gap-2"
+            className="relative group overflow-hidden rounded-full bg-bistro-dark px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-bistro-terracotta hover:shadow-terracotta-glow active:scale-95 flex items-center gap-2"
           >
             <Calendar className="w-4 h-4 text-bistro-sand" />
             <span>Забронировать стол</span>
           </button>
         </div>
 
-        {/* Mobile menu trigger */}
-        <div className="flex items-center gap-2.5 lg:hidden">
+        {/* Mobile menu trigger & Cart */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <button
+            onClick={onOpenDelivery}
+            className="relative p-2 rounded-full bg-white border border-bistro-border text-bistro-dark"
+            title="Корзина"
+          >
+            <ShoppingBag className="w-4 h-4 text-bistro-terracotta" />
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-bistro-terracotta text-white flex items-center justify-center text-[9px] font-bold">
+                {cartCount}
+              </span>
+            )}
+          </button>
+
           <button
             onClick={onOpenBooking}
-            className="sm:hidden px-3.5 py-1.5 rounded-full bg-bistro-dark text-white text-xs font-bold uppercase tracking-wider hover:bg-bistro-terracotta transition-colors"
+            className="sm:hidden px-3 py-1.5 rounded-full bg-bistro-dark text-white text-[11px] font-bold uppercase tracking-wider hover:bg-bistro-terracotta transition-colors"
           >
             Бронь
           </button>
+
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-bistro-dark hover:text-bistro-terracotta focus:outline-none"
+            className="p-1.5 text-bistro-dark hover:text-bistro-terracotta focus:outline-none"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -129,16 +173,30 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
               <Phone className="w-4 h-4 text-bistro-terracotta" />
               <span>+375 (29) 720-33-88</span>
             </a>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenBooking();
-              }}
-              className="w-full py-3 rounded-full bg-bistro-dark text-white font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 hover:bg-bistro-terracotta transition-colors"
-            >
-              <Calendar className="w-4 h-4 text-bistro-sand" />
-              <span>Выбрать стол онлайн</span>
-            </button>
+
+            <div className="grid grid-cols-2 gap-2 pt-1">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenDelivery();
+                }}
+                className="py-3 rounded-full bg-white border border-bistro-border text-bistro-dark font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-1.5 hover:border-bistro-terracotta transition-colors"
+              >
+                <ShoppingBag className="w-3.5 h-3.5 text-bistro-terracotta" />
+                <span>Доставка ({cartCount})</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenBooking();
+                }}
+                className="py-3 rounded-full bg-bistro-dark text-white font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-1.5 hover:bg-bistro-terracotta transition-colors"
+              >
+                <Calendar className="w-3.5 h-3.5 text-bistro-sand" />
+                <span>Бронь стола</span>
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { X, User, Phone, CheckCircle2, ChevronRight, ChevronLeft } from 'lucide-react';
+import { X, User, Phone, CheckCircle2, ChevronRight, ChevronLeft, Check } from 'lucide-react';
 import { SEATING_ZONES, TIME_SLOTS } from '../data/mockData';
 import { SeatingZone, ReservationState } from '../types';
+import { formatBelarusPhone, validateBelarusPhone } from '../utils/phoneValidation';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -104,8 +105,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       setNameError(null);
     }
 
-    if (!booking.customerPhone.trim() || booking.customerPhone.length < 10) {
-      setPhoneError('Введите корректный номер телефона');
+    const phoneCheck = validateBelarusPhone(booking.customerPhone);
+    if (!phoneCheck.isValid) {
+      setPhoneError(phoneCheck.error);
       valid = false;
     } else {
       setPhoneError(null);
@@ -391,20 +393,40 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-bistro-muted font-semibold mb-1.5">
-                    Контактный телефон *
-                  </label>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-xs uppercase tracking-wider text-bistro-muted font-semibold">
+                      Контактный телефон *
+                    </label>
+                    <span className="text-[10px] text-bistro-olive font-medium">Беларусь (+375)</span>
+                  </div>
                   <div className="relative">
                     <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-bistro-muted" />
                     <input
                       type="tel"
                       placeholder="+375 (29) 000-00-00"
                       value={booking.customerPhone}
-                      onChange={(e) => setBooking((prev) => ({ ...prev, customerPhone: e.target.value }))}
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-bistro-border text-bistro-dark placeholder-bistro-muted/60 focus:outline-none focus:border-bistro-terracotta text-sm"
+                      onChange={(e) => {
+                        const formatted = formatBelarusPhone(e.target.value);
+                        setBooking((prev) => ({ ...prev, customerPhone: formatted }));
+                        if (phoneError) setPhoneError(null);
+                      }}
+                      className={`w-full pl-10 pr-10 py-3 rounded-xl bg-white border text-bistro-dark placeholder-bistro-muted/60 focus:outline-none text-sm font-sans ${
+                        phoneError
+                          ? 'border-red-500 focus:border-red-500'
+                          : booking.customerPhone.length >= 19
+                          ? 'border-emerald-600 focus:border-emerald-600'
+                          : 'border-bistro-border focus:border-bistro-terracotta'
+                      }`}
                     />
+                    {booking.customerPhone.length >= 19 && !phoneError && (
+                      <Check className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-600" />
+                    )}
                   </div>
-                  {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
+                  {phoneError ? (
+                    <p className="text-red-500 text-xs mt-1.5 font-medium">{phoneError}</p>
+                  ) : (
+                    <p className="text-[11px] text-bistro-muted mt-1">Формат: +375 (XX) XXX-XX-XX (A1, МТС, Life, городской)</p>
+                  )}
                 </div>
 
                 <div>
