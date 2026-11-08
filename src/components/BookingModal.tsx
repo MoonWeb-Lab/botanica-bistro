@@ -398,7 +398,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-bistro-muted" />
                     <input
                       type="tel"
-                      placeholder="+7 (999) 000-00-00"
+                      placeholder="+375 (29) 000-00-00"
                       value={booking.customerPhone}
                       onChange={(e) => setBooking((prev) => ({ ...prev, customerPhone: e.target.value }))}
                       className="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-bistro-border text-bistro-dark placeholder-bistro-muted/60 focus:outline-none focus:border-bistro-terracotta text-sm"
@@ -459,7 +459,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 </div>
                 <div className="flex justify-between pt-2 border-t border-bistro-border">
                   <span className="text-bistro-muted">Адрес:</span>
-                  <span className="text-bistro-dark">ул. Большая Никитская, 22/2</span>
+                  <span className="text-bistro-dark">г. Минск, ул. Революционная, 17</span>
                 </div>
               </div>
 

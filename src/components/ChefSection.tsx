@@ -20,7 +20,7 @@ export const ChefSection: React.FC = () => {
               <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-bistro-border/80 text-xs shadow-paper-card">
                 <div className="flex items-center gap-2 text-bistro-terracotta font-bold uppercase tracking-wider mb-1">
                   <Award className="w-4 h-4" />
-                  <span>Шеф-повар года</span>
+                  <span>Шеф-повар года • WhereToEat Belarus</span>
                 </div>
                 <p className="text-bistro-dark font-serif text-lg font-bold">Артур Миллер</p>
                 <p className="text-bistro-muted text-[11px]">Стажировки: Сан-Себастьян (Испания) & Лион (Франция)</p>
@@ -40,7 +40,7 @@ export const ChefSection: React.FC = () => {
             </h2>
 
             <blockquote className="font-serif italic text-lg sm:text-xl text-bistro-terracotta mb-8 pl-4 border-l-2 border-bistro-terracotta leading-relaxed">
-              «Мы не маскируем продукты сложными соусами. Наша задача — раскрыть естественную сладость запеченного топинамбура, морскую свежесть сибаса и аромат лесных сморчков. Это диалог природы и человека на вашей тарелке.»
+              «Мы не маскируем продукты сложными соусами. Наша задача — раскрыть естественную сладость запеченного топинамбура, морскую свежесть сибаса и аромат лесных белых грибов. Это диалог природы и человека на вашей тарелке.»
             </blockquote>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-bistro-border/60">
@@ -50,7 +50,7 @@ export const ChefSection: React.FC = () => {
                 </div>
                 <h4 className="text-sm font-bold text-bistro-dark font-serif uppercase">Локальные фермы</h4>
                 <p className="text-xs text-bistro-muted font-light leading-relaxed">
-                  Поставки дичи из Карелии, органических овощей из Тульской области и свежей зелени каждый день.
+                  Поставки органических трав и овощей из Минской области, крафтовых сыров Гродненщины и даров Налибокской пущи.
                 </p>
               </div>
 

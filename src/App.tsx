@@ -5,7 +5,6 @@ import { MenuSection } from './components/MenuSection';
 import { SeatingZonesSection } from './components/SeatingZonesSection';
 import { ChefSection } from './components/ChefSection';
 import { WineSection } from './components/WineSection';
-import { ReviewsSection } from './components/ReviewsSection';
 import { ContactsSection } from './components/ContactsSection';
 import { Footer } from './components/Footer';
 import { BookingModal } from './components/BookingModal';
@@ -60,7 +59,6 @@ export const App: React.FC = () => {
         <SeatingZonesSection onSelectZone={handleSelectZone} />
         <ChefSection />
         <WineSection />
-        <ReviewsSection />
         <ContactsSection />
       </main>
 

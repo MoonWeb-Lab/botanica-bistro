@@ -39,13 +39,13 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectDishToBook }) 
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-bistro-border text-bistro-olive text-xs font-semibold uppercase tracking-wider mb-3 shadow-paper-card">
             <Utensils className="w-3.5 h-3.5" />
-            <span>Сезонная гастрономия</span>
+            <span>Сезонная гастрономия Минска</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-bistro-dark uppercase tracking-tight mb-4">
             Авторское меню
           </h2>
           <p className="text-bistro-muted text-sm sm:text-base leading-relaxed font-light">
-            Блюда создаются из фермерских продуктов утренней поставки, дикой рыбы и ремесленных сыров. Каждая позиция дополнена винной рекомендацией от шеф-сомелье.
+            Блюда создаются из фермерских продуктов утренней поставки, дикоросов Налибокской пущи и ремесленных сыров. Каждая позиция дополнена винной рекомендацией от шеф-сомелье.
           </p>
         </div>
 
@@ -149,7 +149,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectDishToBook }) 
               <div className="p-5 sm:p-6 pt-0 border-t border-bistro-border/40 flex items-center justify-between mt-2">
                 <div>
                   <span className="font-serif text-xl font-bold text-bistro-terracotta">
-                    {dish.price.toLocaleString('ru-RU')} ₽
+                    {dish.price} BYN
                   </span>
                 </div>
                 <button

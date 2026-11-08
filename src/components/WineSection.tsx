@@ -21,7 +21,7 @@ export const WineSection: React.FC = () => {
             Винная коллекция
           </h2>
           <p className="text-bistro-muted text-sm sm:text-base leading-relaxed font-light">
-            250+ отобранных образцов: от признанной классики Бургундии и Пьемонта до биодинамических и редких оранжевых вин малых европейских виноделен.
+            250+ отобранных образцов: от признанной классики Бургундии и Пьемонта до биодинамических и редких оранжевых вин малых европейских виноделен в винном погребе на Революционной.
           </p>
         </div>
 
@@ -89,14 +89,14 @@ export const WineSection: React.FC = () => {
                   <div>
                     <span className="text-[10px] uppercase text-bistro-muted block">Бутылка 750 мл</span>
                     <span className="font-serif text-xl font-bold text-bistro-dark">
-                      {wine.priceBottle.toLocaleString('ru-RU')} ₽
+                      {wine.priceBottle} BYN
                     </span>
                   </div>
                   {wine.priceGlass && (
                     <div className="pl-4 border-l border-bistro-border/50">
                       <span className="text-[10px] uppercase text-bistro-muted block">Бокал 150 мл</span>
                       <span className="font-serif text-lg font-bold text-bistro-terracotta">
-                        {wine.priceGlass.toLocaleString('ru-RU')} ₽
+                        {wine.priceGlass} BYN
                       </span>
                     </div>
                   )}

@@ -28,7 +28,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-bistro-olive"></span>
           </span>
           <span className="text-[11px] uppercase tracking-widest text-bistro-text font-semibold">
-            Большая Никитская • Открыта бронь на вечернюю посадку
+            Минск, Верхний город • Открыта бронь на вечернюю посадку
           </span>
         </div>
 
@@ -42,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
 
         {/* Subtitle */}
         <p className="max-w-2xl text-base sm:text-lg md:text-xl text-bistro-muted font-light mb-10 leading-relaxed">
-          Авторская средиземноморская и фермерская кухня от шеф-повара Артура Миллера. Панорамная оранжерея под стеклянным куполом и коллекция из 250+ редких вин.
+          Авторская средиземноморская и фермерская кухня в историческом центре Минска. Панорамная оранжерея под стеклянным куполом и коллекция из 250+ редких вин.
         </p>
 
         {/* Dual CTAs */}
@@ -71,7 +71,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
               <Award className="w-4 h-4" />
               <span className="font-serif text-bistro-dark text-lg font-bold">ТОП-10</span>
             </div>
-            <span className="text-[11px] text-bistro-muted">WhereToEat Moscow 2026</span>
+            <span className="text-[11px] text-bistro-muted">WhereToEat Belarus 2026</span>
           </div>
 
           <div className="rounded-2xl bg-white/85 backdrop-blur-md border border-bistro-border/80 p-4 shadow-paper-card flex flex-col items-center sm:items-start text-center sm:text-left">
@@ -87,15 +87,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
               <Sparkles className="w-4 h-4 text-bistro-olive" />
               <span className="font-serif text-bistro-dark text-lg font-bold">Farm-to-Table</span>
             </div>
-            <span className="text-[11px] text-bistro-muted">Локальные эко-продукты</span>
+            <span className="text-[11px] text-bistro-muted">Фермерские продукты РБ</span>
           </div>
 
           <div className="rounded-2xl bg-white/85 backdrop-blur-md border border-bistro-border/80 p-4 shadow-paper-card flex flex-col items-center sm:items-start text-center sm:text-left">
             <div className="flex items-center gap-1.5 text-bistro-terracotta mb-1">
               <MapPin className="w-4 h-4 text-bistro-terracotta" />
-              <span className="font-serif text-bistro-dark text-lg font-bold">Никитская</span>
+              <span className="font-serif text-bistro-dark text-lg font-bold">Революционная</span>
             </div>
-            <span className="text-[11px] text-bistro-muted">Центр + Valet Parking</span>
+            <span className="text-[11px] text-bistro-muted">Верхний город • Valet Parking</span>
           </div>
         </div>
       </div>

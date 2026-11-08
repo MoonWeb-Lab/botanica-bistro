@@ -22,7 +22,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
     { name: 'Залы ресторана', href: '#zones' },
     { name: 'О шефе & Концепция', href: '#chef' },
     { name: 'Винная карта', href: '#wine' },
-    { name: 'Отзывы', href: '#reviews' },
     { name: 'Контакты', href: '#contacts' },
   ];
 
@@ -51,7 +50,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-7">
+        <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -66,13 +65,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
         {/* Action Controls */}
         <div className="hidden sm:flex items-center gap-5">
           <a
-            href="tel:+74957203388"
+            href="tel:+375297203388"
             className="flex items-center gap-2 text-xs font-semibold text-bistro-muted hover:text-bistro-dark transition-colors"
           >
             <div className="w-7 h-7 rounded-full bg-bistro-cream border border-bistro-sand flex items-center justify-center text-bistro-terracotta">
               <Phone className="w-3.5 h-3.5" />
             </div>
-            <span>+7 (495) 720-33-88</span>
+            <span>+375 (29) 720-33-88</span>
           </a>
 
           <button
@@ -124,11 +123,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
               <span>Вс — Чт: 12:00–23:00 • Пт — Сб: 12:00–01:00</span>
             </div>
             <a
-              href="tel:+74957203388"
+              href="tel:+375297203388"
               className="flex items-center gap-2 text-sm font-semibold text-bistro-dark"
             >
               <Phone className="w-4 h-4 text-bistro-terracotta" />
-              <span>+7 (495) 720-33-88</span>
+              <span>+375 (29) 720-33-88</span>
             </a>
             <button
               onClick={() => {

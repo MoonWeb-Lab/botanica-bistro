@@ -41,7 +41,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
             </div>
             <div>
               <span className="text-[10px] uppercase tracking-widest text-bistro-olive font-bold">
-                152-ФЗ & Стандарты Безопасности
+                Закон РБ № 99-З & Стандарты НЦЗПД
               </span>
               <h3 className="text-lg sm:text-xl font-bold text-bistro-dark font-serif uppercase tracking-tight">
                 Политика конфиденциальности Botanica Bistro
@@ -64,7 +64,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
               1. Общие положения
             </h4>
             <p>
-              Настоящая Политика регламентирует обработку и защиту персональных данных посетителей сервиса онлайн-бронирования ресторана <strong>Botanica Bistro</strong> (ООО «Ботаника Ресторантс», ИНН 7703891402, г. Москва, ул. Большая Никитская, д. 22/2).
+              Настоящая Политика регламентирует порядок обработки и защиты персональных данных посетителей сервиса онлайн-бронирования ресторана <strong>Botanica Bistro</strong> (ООО «Ботаника Ресторанс», УНП 193582410, Республика Беларусь, г. Минск, ул. Революционная, д. 17) в соответствии с Законом Республики Беларусь от 7 мая 2021 г. № 99-З «О защите персональных данных».
             </p>
           </div>
 
@@ -73,13 +73,13 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
               <Eye className="w-4 h-4 text-bistro-terracotta" />
               2. Состав и цели обработки данных
             </h4>
-            <p>Для бронирования стола и обеспечения персонализированного сервиса мы обрабатываем:</p>
+            <p>Для бронирования стола и обеспечения персонального гастрономического сервиса мы обрабатываем:</p>
             <ul className="list-disc pl-5 mt-2 space-y-1 text-bistro-muted">
-              <li>Имя гостя (для фиксации резерва и приветствия в зале);</li>
-              <li>Контактный номер телефона (для SMS/мессенджер-подтверждения);</li>
-              <li>Адрес электронной почты (для отправки электронного приглашения и кассовых чеков);</li>
-              <li>Количество персон, выбранную зону зала и особые пожелания (аллергии, предзаказ вин);</li>
-              <li>Технические файлы cookie для стабильной работы онлайн-сервиса.</li>
+              <li>Имя гостя (для фиксации брони и встречи администратором в зале);</li>
+              <li>Контактный номер телефона (для SMS/мессенджер-подтверждения резерва);</li>
+              <li>Адрес электронной почты (для отправки электронного приглашения);</li>
+              <li>Количество персон, выбранный зал и особые пожелания (аллергии, предзаказ вин);</li>
+              <li>Технические файлы cookie для корректной работы сервиса бронирования.</li>
             </ul>
           </div>
 
@@ -89,7 +89,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
               3. Защита информации
             </h4>
             <p>
-              Персональные сведения не передаются третьим лицам, за исключением случаев, прямо предусмотренных законодательством РФ. Передача данных осуществляется по зашифрованному протоколу TLS 1.3.
+              Персональные сведения гостей не передаются третьим лицам, за исключением случаев, прямо предусмотренных действующим законодательством Республики Беларусь. Передача данных осуществляется по защищенному протоколу TLS 1.3.
             </p>
           </div>
 
@@ -99,7 +99,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
               4. Отзыв согласия
             </h4>
             <p>
-              Вы можете в любой момент отозвать свое согласие на обработку персональных данных, направив письмо на адрес: <strong className="text-bistro-terracotta">privacy@botanica-bistro.demo</strong> или позвонив консьерж-службе: <strong className="text-bistro-dark">+7 (495) 720-33-88</strong>.
+              Вы можете в любой момент отозвать свое согласие на обработку персональных данных, направив запрос на адрес: <strong className="text-bistro-terracotta">privacy@botanica-bistro.by</strong> или обратившись к консьерж-службе ресторана: <strong className="text-bistro-dark">+375 (29) 720-33-88</strong>.
             </p>
           </div>
         </div>
@@ -107,7 +107,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, 
         {/* Footer */}
         <div className="p-4 sm:p-5 border-t border-bistro-border bg-bistro-cream/40 flex items-center justify-between">
           <span className="text-[11px] text-bistro-muted">
-            Редакция от 8 ноября 2026 года
+            Редакция от 8 ноября 2026 года • Минск, Беларусь
           </span>
           <button
             onClick={onClose}

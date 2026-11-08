@@ -5,7 +5,7 @@ export const ContactsSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
 
   const handleCopyAddress = () => {
-    navigator.clipboard.writeText('г. Москва, ул. Большая Никитская, 22/2');
+    navigator.clipboard.writeText('г. Минск, ул. Революционная, 17');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -18,7 +18,7 @@ export const ContactsSection: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-bistro-border text-bistro-olive text-xs font-semibold uppercase tracking-wider mb-4 shadow-paper-card">
               <MapPin className="w-3.5 h-3.5" />
-              <span>Локация в Центре</span>
+              <span>Локация в Центре Минска</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-bistro-dark uppercase tracking-tight mb-6">
@@ -26,7 +26,7 @@ export const ContactsSection: React.FC = () => {
             </h2>
 
             <p className="text-bistro-muted text-sm sm:text-base leading-relaxed mb-8 font-light">
-              Мы находимся в гастрономическом сердце Москвы на Большой Никитской. Для гостей работает бесплатный Valet Parking — просто передайте ключи консьержу при въезде.
+              Мы находимся в историческом сердце Минска в Верхнем городе на пешеходной улице Революционной. Для гостей ресторана работает бесплатный Valet Parking — передайте ключи консьержу при заезде во внутренний дворик.
             </p>
 
             <div className="space-y-5">
@@ -47,10 +47,10 @@ export const ContactsSection: React.FC = () => {
                     </button>
                   </div>
                   <p className="text-base font-semibold text-bistro-dark mt-0.5 font-serif">
-                    г. Москва, ул. Большая Никитская, 22/2
+                    г. Минск, ул. Революционная, 17
                   </p>
                   <p className="text-xs text-bistro-muted mt-0.5">
-                    м. Охотный Ряд (5 мин), м. Арбатская (7 мин)
+                    Верхний город • м. Немига (4 мин пешком), м. Октябрьская / Купаловская
                   </p>
                 </div>
               </div>
@@ -66,7 +66,7 @@ export const ContactsSection: React.FC = () => {
                     Вс — Чт: 12:00 – 23:00 • Пт — Сб: 12:00 – 01:00
                   </p>
                   <p className="text-xs text-bistro-muted mt-0.5">
-                    Кухня принимает заказы до 22:30 (в выходные до 00:00)
+                    Кухня принимает заказы до 22:30 (в выходные дни до 00:00)
                   </p>
                 </div>
               </div>
@@ -77,15 +77,24 @@ export const ContactsSection: React.FC = () => {
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-[11px] text-bistro-muted uppercase tracking-wider font-semibold">Бронь и банкеты</span>
-                  <a
-                    href="tel:+74957203388"
-                    className="block text-base font-semibold text-bistro-terracotta hover:underline mt-0.5 font-serif"
-                  >
-                    +7 (495) 720-33-88
-                  </a>
+                  <span className="text-[11px] text-bistro-muted uppercase tracking-wider font-semibold">Бронь столов & Консьерж</span>
+                  <div className="flex flex-wrap items-center gap-3 mt-0.5">
+                    <a
+                      href="tel:+375297203388"
+                      className="text-base font-semibold text-bistro-terracotta hover:underline font-serif"
+                    >
+                      +375 (29) 720-33-88
+                    </a>
+                    <span className="text-xs text-bistro-muted">•</span>
+                    <a
+                      href="tel:+375173228800"
+                      className="text-sm font-semibold text-bistro-dark hover:text-bistro-terracotta"
+                    >
+                      +375 (17) 322-88-00
+                    </a>
+                  </div>
                   <p className="text-xs text-bistro-muted mt-0.5">
-                    Бесплатный Valet Parking • Дресс-код Smart Casual
+                    Бесплатный Valet Parking для гостей • Дресс-код Smart Casual
                   </p>
                 </div>
               </div>
@@ -107,7 +116,7 @@ export const ContactsSection: React.FC = () => {
                 <MapPin className="w-6 h-6" />
               </div>
               <div className="mt-2 px-3.5 py-1 rounded-full bg-white/95 border border-bistro-border text-xs font-serif font-bold text-bistro-dark shadow-lg">
-                Botanica Bistro
+                Botanica Bistro • Минск
               </div>
             </div>
 
@@ -118,10 +127,10 @@ export const ContactsSection: React.FC = () => {
                   <Car className="w-3.5 h-3.5" />
                   <span>Valet Parking</span>
                 </p>
-                <p className="text-xs text-bistro-dark font-medium">Въезд со стороны Большой Никитской</p>
+                <p className="text-xs text-bistro-dark font-medium">Заезд со стороны ул. Комсомольской</p>
               </div>
               <a
-                href="https://yandex.ru/maps"
+                href="https://yandex.by/maps/157/minsk/?ll=27.552880%2C53.902250&z=17"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-full bg-bistro-dark text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 hover:bg-bistro-terracotta transition-colors shrink-0 ml-3"

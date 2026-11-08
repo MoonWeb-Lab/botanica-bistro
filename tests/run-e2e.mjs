@@ -39,7 +39,7 @@ export async function runTestSuite(targetUrl) {
   assert(response.status() === 200, `Page loaded with HTTP 200 (Got ${response.status()})`);
 
   const title = await page.title();
-  assert(title.includes('Botanica Bistro'), `Page title contains 'Botanica Bistro': "${title}"`);
+  assert(title.includes('Botanica Bistro') && title.includes('Минск'), `Page title contains 'Botanica Bistro' and 'Минск': "${title}"`);
 
   // SEO & Schema.org Restaurant
   const metaDesc = await page.$eval('meta[name="description"]', (el) => el.getAttribute('content'));
@@ -48,13 +48,15 @@ export async function runTestSuite(targetUrl) {
   const jsonLd = await page.$eval('script[type="application/ld+json"]', (el) => JSON.parse(el.textContent || '{}'));
   assert(jsonLd['@type'] === 'Restaurant', `Schema.org JSON-LD @type is "Restaurant"`);
   assert(jsonLd.name === 'Botanica Bistro', `Schema.org name matches "Botanica Bistro"`);
+  assert(jsonLd.address.addressLocality === 'Минск', `Schema.org locality is "Минск"`);
+  assert(jsonLd.telephone === '+375 (29) 720-33-88', `Schema.org phone is Belarusian "+375 (29) 720-33-88"`);
 
   // Hero Section
   const heroHeading = await page.locator('h1').first().textContent();
   assert(heroHeading.includes('Гармония вкусов'), `Hero H1 rendered properly: "${heroHeading.replace(/\s+/g, ' ').trim()}"`);
 
   // Menu Category & Tag Filtering
-  console.log('\n  Testing Menu Filtering...');
+  console.log('\n  Testing Menu Filtering & BYN Currency...');
   await page.locator('#menu').scrollIntoViewIfNeeded();
   await page.waitForTimeout(600);
   await page.click('button:has-text("Паста & Ризотто")');
@@ -69,7 +71,11 @@ export async function runTestSuite(targetUrl) {
 
   await page.click('button:has-text("Все меню")');
   await page.locator('button:has-text("Вегетарианское")').click(); // toggle off
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(800);
+
+  // Check currency is BYN
+  const hasBynPrice = await page.locator('span:has-text("BYN")').count();
+  assert(hasBynPrice > 0, `Prices formatted in Belarusian BYN (Found ${hasBynPrice} price tags)`);
 
   // Check all images in menu
   const menuImages = await page.locator('#menu img').evaluateAll((imgs) =>
@@ -110,8 +116,8 @@ export async function runTestSuite(targetUrl) {
   assert(nameError, 'Form validation caught empty guest name properly');
 
   await page.fill('input[placeholder="Константин"]', 'Екатерина (MoonWeb VIP)');
-  await page.fill('input[placeholder="+7 (999) 000-00-00"]', '+7 999 555-44-33');
-  await page.fill('textarea', 'Юбилей, столик украсить свечами');
+  await page.fill('input[placeholder="+375 (29) 000-00-00"]', '+375 29 555-44-33');
+  await page.fill('textarea', 'Юбилей в Верхнем городе, столик украсить свечами');
 
   await page.click('button:has-text("Подтвердить бронь")');
   await page.waitForTimeout(500);
@@ -119,6 +125,9 @@ export async function runTestSuite(targetUrl) {
   // Step 5: Confirmation screen
   const successTitle = await page.locator('text=Стол забронирован!').isVisible();
   assert(successTitle, 'Step 5 Confirmation screen reached successfully');
+
+  const addressText = await page.locator('span:has-text("Революционная, 17")').textContent();
+  assert(addressText.includes('Революционная, 17'), `Booking confirmation contains Minsk address: "${addressText}"`);
 
   const bookingCode = await page.locator('strong:has-text("#BB-")').textContent();
   assert(bookingCode && bookingCode.startsWith('#BB-'), `Generated booking code: "${bookingCode}"`);
@@ -138,6 +147,10 @@ export async function runTestSuite(targetUrl) {
   const privacyModal = page.locator('div.fixed h3:has-text("Политика конфиденциальности")');
   assert(await privacyModal.isVisible(), 'Privacy Policy Modal opened via banner');
 
+  // Verify Law of Belarus mention
+  const privacyText = await page.locator('div.fixed').textContent();
+  assert(privacyText.includes('Закон РБ № 99-З'), 'Privacy policy cites Belarusian Law № 99-З');
+
   await page.click('button:has-text("Понятно")');
   await page.waitForTimeout(300);
   assert(!(await privacyModal.isVisible()), 'Privacy Policy Modal closed via "Понятно"');
@@ -145,6 +158,10 @@ export async function runTestSuite(targetUrl) {
   await page.click('button:has-text("Принять все")');
   await page.waitForTimeout(300);
   assert(!(await cookieBanner.isVisible()), 'Cookie banner dismissed on accept');
+
+  // Verify Fake Reviews are gone
+  const reviewsCount = await page.locator('#reviews').count();
+  assert(reviewsCount === 0, 'Fake reviews section completely removed as requested');
 
   // Take Desktop Screenshot
   await page.screenshot({ path: 'C:/Users/user/.gemini/antigravity/scratch/botanica-bistro/tests/desktop-preview.png', fullPage: false });

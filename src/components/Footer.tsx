@@ -30,10 +30,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
               </div>
             </div>
             <p className="text-xs text-bistro-muted leading-relaxed mb-4 font-light">
-              Гастрономический ресторан авторской кухни и панорамная оранжерея в историческом центре Москвы.
+              Гастрономический ресторан авторской кухни и панорамная оранжерея в историческом центре Минска.
             </p>
             <div className="text-xs text-bistro-terracotta font-mono font-medium">
-              ИНН: 7703891402 • Ресторанный холдинг Botanica
+              УНП: 193582410 • Ресторанный холдинг Botanica
             </div>
           </div>
 
@@ -56,7 +56,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
                 <a href="#wine" className="hover:text-bistro-terracotta text-bistro-text/80 transition-colors">Винная карта</a>
               </li>
               <li>
-                <a href="#reviews" className="hover:text-bistro-terracotta text-bistro-text/80 transition-colors">Отзывы гостей</a>
+                <a href="#contacts" className="hover:text-bistro-terracotta text-bistro-text/80 transition-colors">Контакты & Локация</a>
               </li>
             </ul>
           </div>
@@ -77,12 +77,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-bistro-olive shrink-0" />
-                <span>ул. Большая Никитская, 22/2</span>
+                <span>г. Минск, ул. Революционная, 17</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-bistro-olive shrink-0" />
-                <a href="tel:+74957203388" className="hover:text-bistro-terracotta text-bistro-dark font-medium transition-colors">
-                  +7 (495) 720-33-88
+                <a href="tel:+375297203388" className="hover:text-bistro-terracotta text-bistro-dark font-medium transition-colors">
+                  +375 (29) 720-33-88
                 </a>
               </div>
             </div>
@@ -96,7 +96,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
                 <span>MoonWeb Lab Showcase</span>
               </div>
               <p className="text-xs text-bistro-text/80 font-light leading-relaxed">
-                Премиальный цифровой кейс для ресторанного и HoReCa бизнеса с онлайн-букингом столов.
+                Премиальный цифровой кейс для ресторанного и HoReCa бизнеса с онлайн-букингом столов в Минске.
               </p>
             </div>
             <div className="mt-4 pt-3 border-t border-bistro-border flex items-center justify-between">
@@ -113,7 +113,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
         </div>
 
         <div className="pt-8 border-t border-bistro-border flex flex-col sm:flex-row items-center justify-between text-xs text-bistro-muted gap-4">
-          <p>© 2026 Botanica Bistro. Все права защищены.</p>
+          <p>© 2026 Botanica Bistro (ООО «Ботаника Ресторанс»). Все права защищены.</p>
           <div className="flex items-center gap-5">
             <button
               onClick={onOpenPrivacy}
