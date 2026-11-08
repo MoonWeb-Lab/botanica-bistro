@@ -63,7 +63,7 @@ export const DISHES: Dish[] = [
     category: 'mains',
     price: 1450,
     weight: '280 г',
-    image: 'https://images.unsplash.com/photo-1514944298352-7a71676dfd22?auto=format&fit=crop&w=700&q=80',
+    image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=700&q=80',
     tags: ['gluten-free'],
     winePairing: 'Valpolicella Ripasso Classico Superiore',
   },
