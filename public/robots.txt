@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://botanica-bistro.demo/sitemap.xml
