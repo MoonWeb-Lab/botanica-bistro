@@ -126,7 +126,7 @@ export async function runTestSuite(targetUrl) {
   const successTitle = await page.locator('text=Стол забронирован!').isVisible();
   assert(successTitle, 'Step 5 Confirmation screen reached successfully');
 
-  const addressText = await page.locator('span:has-text("Революционная, 17")').textContent();
+  const addressText = await page.locator('div.fixed span:has-text("Революционная, 17")').first().textContent();
   assert(addressText.includes('Революционная, 17'), `Booking confirmation contains Minsk address: "${addressText}"`);
 
   const bookingCode = await page.locator('strong:has-text("#BB-")').textContent();
@@ -148,7 +148,7 @@ export async function runTestSuite(targetUrl) {
   assert(await privacyModal.isVisible(), 'Privacy Policy Modal opened via banner');
 
   // Verify Law of Belarus mention
-  const privacyText = await page.locator('div.fixed').textContent();
+  const privacyText = await page.locator('div.fixed').filter({ hasText: 'Закон РБ № 99-З' }).first().textContent();
   assert(privacyText.includes('Закон РБ № 99-З'), 'Privacy policy cites Belarusian Law № 99-З');
 
   await page.click('button:has-text("Понятно")');
