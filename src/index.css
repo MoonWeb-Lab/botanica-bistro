@@ -8,6 +8,39 @@
     color: #2c2520;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* Disable blinking insertion caret on text elements when clicked */
+  * {
+    caret-color: transparent;
+  }
+
+  /* Keep default arrow cursor on text so it doesn't turn into an I-beam bar, while preserving text selection & copy */
+  h1, h2, h3, h4, h5, h6, p, span, li, dt, dd, label {
+    cursor: default;
+    user-select: text;
+  }
+
+  /* Keep pointer cursor for interactive controls */
+  a, button, [role="button"], select, input[type="range"], input[type="checkbox"] {
+    cursor: pointer;
+  }
+
+  /* Restore text cursor and blinking caret inside actual form fields */
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  textarea,
+  [contenteditable="true"] {
+    cursor: text !important;
+    caret-color: #b65338 !important;
+    user-select: text !important;
+  }
+
+  /* Remove focus outline on mouse click */
+  *:focus:not(:focus-visible) {
+    outline: none;
   }
 
   /* Refined warm linen scrollbar */
